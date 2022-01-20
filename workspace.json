@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "fe-wtc-tech-test": "apps/fe-wtc-tech-test",
+    "fe-wtc-tech-test-e2e": "apps/fe-wtc-tech-test-e2e"
+  }
+}
