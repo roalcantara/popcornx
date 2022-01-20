@@ -9,7 +9,8 @@ overrides:
       - '*.tsx'
       - '*.js'
       - '*.jsx'
-    rules: {}
+    rules:
+      jest/expect-expect: off
   - files:
       - src/plugins/index.js
     rules:
