@@ -1,0 +1,98 @@
+name: Verify
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+
+env:
+  CI: true
+  NODE_VERSION: 16
+  FORCE_COLOR: true
+  YARN_CACHE_PATH: node_modules
+  SCOPE: --base=origin/master --head=origin/${{ github.event.pull_request.head.ref }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      affected: ${{ steps.affected.outputs.all }}
+      cache-key: ${{ steps.cache.outputs.key }}
+      cypress-path: ${{ steps.cypress-path.outputs.value }}
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup cache key
+        id: cache
+        run: echo "::set-output name=key::${{ hashFiles('yarn.lock') }}"
+      - name: Setup cache
+        uses: actions/cache@v2
+        id: bundle
+        with:
+          path: ${{ env.YARN_CACHE_PATH }}
+          key: ${{ runner.os }}-yarn-${{ steps.cache.outputs.key }}
+      - name: Setup cypress path
+        id: cypress-path
+        uses: ./.github/steps/cypress
+      - name: Setup cypress cache
+        uses: actions/cache@v2
+        id: cypress
+        with:
+          path: ${{ steps.cypress-path.outputs.value }}
+          key: ${{ runner.os }}-cypress-${{ steps.cache.outputs.key }}
+      - name: Install dependencies
+        run: yarn ci
+        if: ${{ !steps.bundle.outputs.cache-hit || !steps.cypress.outputs.cache-hit }}
+      - name: Setup affected apps
+        id: affected
+        uses: ./.github/steps/affected
+
+  tasks:
+    needs: setup
+    runs-on: ubuntu-latest
+    if: needs.setup.outputs.affected != ''
+    strategy:
+      matrix:
+        task: [format, lint, test, e2e, build]
+    name: ${{ matrix.task }}
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Restore cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.YARN_CACHE_PATH }}
+          key: ${{ runner.os }}-yarn-${{ needs.setup.outputs.cache-key }}
+      - name: Restore cypress cache
+        if: matrix.task == 'e2e'
+        uses: actions/cache@v2
+        with:
+          path: ${{ needs.setup.outputs.cypress-path }}
+          key: ${{ runner.os }}-cypress-${{ needs.setup.outputs.cache-key }}
+      - name: Run ${{ matrix.task }} for ${{ needs.setup.outputs.affected }}
+        run: yarn ci:${{ matrix.task }} ${{ env.SCOPE }}
+      - name: Collect cypress artifacts
+        if: matrix.task == 'e2e' && success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: e2e-results
+          path: dist/cypress

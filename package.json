@@ -11,6 +11,12 @@
     "test": "nx run-many --target=test --projects=fe-wtc-tech-test,fe-wtc-tech-test-angularv2 --parallel",
     "e2e": "nx run-many --target=e2e --projects=fe-wtc-tech-test-e2e,fe-wtc-tech-test-angularv2-e2e",
     "lint": "nx workspace-lint && nx run-many --target=lint --projects=fe-wtc-tech-test,fe-wtc-tech-test-e2e,fe-wtc-tech-test-angularv2,fe-wtc-tech-test-angularv2-e2e --parallel",
+    "ci": "yarn install --frozen-lockfile",
+    "ci:format": "nx format:check --parallel",
+    "ci:build": "nx affected:build --parallel --prod",
+    "ci:test": "nx affected:test --parallel --silent --ci",
+    "ci:lint": "nx affected:lint --parallel --silent",
+    "ci:e2e": "nx affected:e2e --headless --silent --ci",    
     "postinstall": "ngcc --properties es2015 browser module main"
   },
   "private": true,
