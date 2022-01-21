@@ -1,6 +1,6 @@
 # 🍿 Popcornx
 
-A simple project to keep track of favorite movies and series.
+A simple personal project to keep track of favorite movies, series, books and comic-books.
 
 [![MIT license](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE)
 [![Editor Config](https://img.shields.io/badge/Editor%20Config-1.0.1-crimson.svg)][2]
@@ -17,9 +17,43 @@ A simple project to keep track of favorite movies and series.
 
 ### Dependencies
 
-- [git][3]
+- [Git][3]
 - [Precommit][6]
 - [GitLint][7]
+
+## About
+
+This is just a small personal project in which I aim to deepen and enrich my knowledge in:
+
+### Frontend
+
+- **Monorepo:** [Micro Front Ends][28] (via [Nx][9]);
+  - **apps/front:** A [React][19]/[Nextjs][21]/[Typescript][30] project (via [Vercel][31])
+  - **apps/admin:** An [Angular][20]/[Typescript][30] project (via [Firebase][32])
+  - **apps/api:** A [NestJS][21]/[Typescript][30] project (via [Heroku][33] or [Firebase][32] - not sure)
+  - **libs/ui:** A [webcomponents][34] shared library (via [Storybook][35])
+  - **libs/domain:** A shared library (following [Enterprise Monorepo Angular Patterns][29])
+- **Unit Tests:** Via [Jest][24]
+- **E2E Tests:** Via [Cypress][25]
+- **Code Style:** Via [ESLint][26] and [Prettier][27]
+- **Database:** Via [Postgres][41] or [Firestore][42] - not sure
+- **UI:** Responsive (probably via [Tailwindcss][36])
+
+### Organization
+
+- **Project Management:** Kanban via [GitHub Projects](https://github.com/roalcantara/popcornx/projects/1)
+- **Semantic Commits:** Applying [Conventional Commits][8] (via [gitlint][7] and [pre-commits][6])
+- **Git:** Using [GitHub Flow][43]
+
+### DevOps
+
+- **Automated Environments:** Triggered by each [Pull Requests][47]
+- **Continuous Integration:** via [GitHub Actions][45]
+- **Continuous Delivery:** For each project (via [GitHub Deployments][46] and [Semantic Release][37])
+- **Web Quality:**
+  - Running [Lighthouse][38] checks during the CI process
+  - Running [WebVitals][39] checks during the CI process
+- **Test coverage:** Coverage report (probably via [Codecov][40])
 
 ## Usage
 
@@ -183,3 +217,22 @@ The project is available as open source under the terms of the [MIT][1] [License
 [25]: https://cypress.io 'Cypress'
 [26]: https://eslint.org 'ESLint'
 [27]: https://prettier.io 'Prettier: Opinionated Code Formatter'
+[28]: https://micro-frontends.org 'Micro Frontends: extending the microservice idea to frontend development'
+[29]: https://go.nrwl.io/angular-enterprise-monorepo-patterns-new-book 'Enterprise Monorepo Angular Patterns'
+[30]: https://typescriptlang.org 'TypeScript is JavaScript with syntax for types'
+[31]: https://vercel.com 'Vercel: Enables frontend teams to do their best work'
+[32]: https://firebase.google.com 'Firebase: Helps you build and run successful apps'
+[33]: https://heroku.com 'Heroku: A cloud platform that lets companies build, deliver, monitor and scale apps'
+[34]: https://developer.mozilla.org/en-US/docs/Web/Web_Components 'Web Components'
+[35]: https://storybook.js.org 'Storybook: Build component driven UIs faster'
+[36]: https://tailwindcss.com 'Tailwind CSS: Rapidly build modern websites without ever leaving your HTML'
+[37]: https://semantic-release.gitbook.io/semantic-release 'Semantic Release: Fully automated version management and package publishing'
+[38]: https://developers.google.com/web/tools/lighthouse 'Lighthouse: Open-source, automated tool for improving the quality of web pages'
+[39]: https://web.dev/patterns/web-vitals-patterns 'Web Vitals: Patterns'
+[40]: https://codecov.io 'Codecov: Ship healthier code faster with less risk'
+[41]: https://heroku.com/postgres 'Heroku Postgres: SQL database as a service for all developers'
+[42]: https://firebase.google.com/products/firestore 'Cloud Firestore: Store and Sync app data at global scale'
+[43]: https://githubflow.github.io 'GitHub Flow'
+[45]: https://www.thoughtworks.com/continuous-integration 'Continuous Integration (CI) is a development practice that requires developers to integrate code into a shared repository several times a day'
+[46]: https://docs.github.com/en/actions/deployment/about-deployments/about-continuous-deployment 'GitHub: About continuous deployment'
+[47]: https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment 'Using environments for deployment'
