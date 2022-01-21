@@ -1,0 +1,94 @@
+{
+  "projectType": "application",
+  "root": "apps/popcornx/admin/app",
+  "sourceRoot": "apps/popcornx/admin/app/src",
+  "prefix": "popcornx-admin",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/popcornx/admin/app",
+        "index": "apps/popcornx/admin/app/src/index.html",
+        "main": "apps/popcornx/admin/app/src/main.ts",
+        "polyfills": "apps/popcornx/admin/app/src/polyfills.ts",
+        "tsConfig": "apps/popcornx/admin/app/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/popcornx/admin/app/src/favicon.ico",
+          "apps/popcornx/admin/app/src/assets"
+        ],
+        "styles": ["apps/popcornx/admin/app/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/popcornx/admin/app/src/environments/environment.ts",
+              "with": "apps/popcornx/admin/app/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "admin:build:production"
+        },
+        "development": {
+          "browserTarget": "admin:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "admin:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/popcornx/admin/app/src/**/*.ts",
+          "apps/popcornx/admin/app/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/popcornx/admin/app"],
+      "options": {
+        "jestConfig": "apps/popcornx/admin/app/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

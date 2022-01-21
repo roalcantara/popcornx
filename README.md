@@ -23,32 +23,32 @@ A simple personal project to keep track of favorite movies, series, books and co
 
 ## About
 
-This is just a small personal project in which I aim to deepen and enrich my knowledge in:
+This is just a small personal project in which I aim to deepen and enrich my knowledge on:
 
 ### Frontend
 
-- **Monorepo:** [Micro Front Ends][28] (via [Nx][9]);
+- **Monorepo:** [Micro Front Ends][28] (via [NX][9]);
   - **apps/front:** A [React][19]/[Nextjs][21]/[Typescript][30] project (via [Vercel][31])
   - **apps/admin:** An [Angular][20]/[Typescript][30] project (via [Firebase][32])
   - **apps/api:** A [NestJS][21]/[Typescript][30] project (via [Heroku][33] or [Firebase][32] - not sure)
   - **libs/ui:** A [webcomponents][34] shared library (via [Storybook][35])
   - **libs/domain:** A shared library (following [Enterprise Monorepo Angular Patterns][29])
-- **Unit Tests:** Via [Jest][24]
-- **E2E Tests:** Via [Cypress][25]
-- **Code Style:** Via [ESLint][26] and [Prettier][27]
+  - **unit tests:** Via [Jest][24]
+  - **e2e tests:** Via [Cypress][25]
+  - **code style:** Via [ESLint][26] and [Prettier][27]
 - **Database:** Via [Postgres][41] or [Firestore][42] - not sure
 - **UI:** Responsive (probably via [Tailwindcss][36])
 
-### Organization
+### SCRUM/Kanban
 
-- **Project Management:** Kanban via [GitHub Projects](https://github.com/roalcantara/popcornx/projects/1)
+- **Project Management:** Kanban via Github Projects
 - **Semantic Commits:** Applying [Conventional Commits][8] (via [gitlint][7] and [pre-commits][6])
 - **Git:** Using [GitHub Flow][43]
 
 ### DevOps
 
-- **Automated Environments:** Triggered by each [Pull Requests][47]
-- **Continuous Integration:** via [GitHub Actions][45]
+- **Automated Environments:** Triggered by each Pull Requests
+- **Continuous Integration:** via [Github Actions][45]
 - **Continuous Delivery:** For each project (via [GitHub Deployments][46] and [Semantic Release][37])
 - **Web Quality:**
   - Running [Lighthouse][38] checks during the CI process

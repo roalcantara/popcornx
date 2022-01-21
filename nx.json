@@ -1,5 +1,5 @@
 {
-  "npmScope": "mono-nx-test",
+  "npmScope": "popcornx",
   "affected": {
     "defaultBase": "main"
   },
@@ -55,5 +55,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "fe-wtc-tech-test"
+  "defaultProject": "api"
 }

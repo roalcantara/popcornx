@@ -1,9 +1,10 @@
 {
   "version": 2,
   "projects": {
-    "fe-wtc-tech-test": "apps/fe-wtc-tech-test",
-    "fe-wtc-tech-test-angularv2": "apps/fe-wtc-tech-test-angularv2",
-    "fe-wtc-tech-test-angularv2-e2e": "apps/fe-wtc-tech-test-angularv2-e2e",
-    "fe-wtc-tech-test-e2e": "apps/fe-wtc-tech-test-e2e"
+    "api": "apps/popcornx/api/app",
+    "admin": "apps/popcornx/admin/app",
+    "admin-e2e": "apps/popcornx/admin/app-e2e",
+    "front": "apps/popcornx/front/app",
+    "front-e2e": "apps/popcornx/front/app-e2e"
   }
 }

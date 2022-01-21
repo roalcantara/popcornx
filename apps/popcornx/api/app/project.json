@@ -1,0 +1,52 @@
+{
+  "root": "apps/popcornx/api/app",
+  "sourceRoot": "apps/popcornx/api/app/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/popcornx/api/app",
+        "main": "apps/popcornx/api/app/src/main.ts",
+        "tsConfig": "apps/popcornx/api/app/tsconfig.app.json",
+        "assets": ["apps/popcornx/api/app/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/popcornx/api/app/src/environments/environment.ts",
+              "with": "apps/popcornx/api/app/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/popcornx/api/app/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/popcornx/api/app"],
+      "options": {
+        "jestConfig": "apps/popcornx/api/app/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
